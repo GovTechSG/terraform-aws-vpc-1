@@ -86,13 +86,13 @@ resource "aws_internet_gateway" "this" {
 
   vpc_id = local.vpc_id
 
-  tags = merge(
-    {
-      "Name" = format("%s", var.name)
-    },
-    var.tags,
-    var.igw_tags,
-  )
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 
 ################
