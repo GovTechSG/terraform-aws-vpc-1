@@ -1220,6 +1220,7 @@ variable "outpost_az" {
   default     = null
 }
 
+<<<<<<< HEAD
 variable "firewall_inbound_acl_rules" {
   description = "firewall subnets inbound network ACL rules"
   type        = list(map(string))
@@ -1250,4 +1251,27 @@ variable "firewall_outbound_acl_rules" {
       cidr_block  = "0.0.0.0/0"
     },
   ]
+=======
+variable "flow_log_file_format" {
+  description = "(Optional) The format for the flow log. Valid values: `plain-text`, `parquet`."
+  type        = string
+  default     = "plain-text"
+  validation {
+    condition = can(regex("^(plain-text|parquet)$",
+    var.flow_log_file_format))
+    error_message = "ERROR valid values: plain-text, parquet."
+  }
+}
+
+variable "flow_log_hive_compatible_partitions" {
+  description = "(Optional) Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3."
+  type        = bool
+  default     = false
+}
+
+variable "flow_log_per_hour_partition" {
+  description = "(Optional) Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries."
+  type        = bool
+  default     = false
+>>>>>>> 2423e4f (feat: Added support for VPC Flow Logs in Parquet format (#700))
 }
