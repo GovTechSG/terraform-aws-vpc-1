@@ -23,7 +23,6 @@ variable "cidr_name" {
 
 variable "enable_ipv6" {
   description = "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block."
-
   type        = bool
   default     = false
 }
@@ -1811,15 +1810,9 @@ variable "enable_workspaces_endpoint" {
   type        = bool
   default     = false
 }
-  
+
 variable "firewall_route_table_tags" {
   description = "Additional tags for the firewall route tables"
-  type        = map(string)
-  default     = {}
-}
-
-variable "database_subnet_tags" {
-  description = "Additional tags for the database subnets"
   type        = map(string)
   default     = {}
 }
@@ -3062,7 +3055,7 @@ variable "outpost_az" {
   type        = string
   default     = null
 }
- 
+
 variable "firewall_inbound_acl_rules" {
   description = "firewall subnets inbound network ACL rules"
   type        = list(map(string))
